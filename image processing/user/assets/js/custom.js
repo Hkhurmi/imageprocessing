@@ -1,0 +1,146 @@
+!(function($) {
+  "use strict";
+  
+		var numOfOrders = 0;
+		$(".num").text(numOfOrders);
+		
+		// increase/decrease the price of order if an item is added/removed
+		function checkboxChange(x) {
+			var priceDialog = 0;
+			$("#recipe" + x).children("li").children("input").each(function() {
+				if($(this).is(":checked")) {
+					priceDialog += 3;
+				}
+				$("#totalDialog" + x + ">span").text(priceDialog);
+				$(this).change(function() {
+					if($(this).is(":checked")) {
+						priceDialog += 3;
+						console.log(priceDialog);
+						$("#totalDialog" + x + ">span").text(priceDialog);
+					} else {
+						priceDialog -= 3;
+						$("#totalDialog" + x + ">span").text(priceDialog);
+					}
+				});
+			});
+		}
+		
+		$(".addIngredient").on("click", function() {
+			// Creates input field and two buttons for adding an ingrediant that's not on the list
+			var inputIng = '<input type="text" id="newIngredient">';
+			var confirmInput = '<a class="btnStyle3 btnStyle confirmInput">&#10004;</a>';
+			var cancelInput = '<a class="btnStyle3 btnStyle cancelInput">&#10008;</a>';
+			var inputWrap = '<div class="addIngredientWrap">' + inputIng + confirmInput + cancelInput + '</div>';
+			$(this).parent().children("ul").after(inputWrap);
+			$("#newIngredient").focus();
+			$("#newIngredient").attr("placeholder", "separate ingredients with a comma");
+			// Confirm button adds the new ingrediant to the list of ingrediants
+			$(".addIngredientWrap > .confirmInput").on("click", function() {
+				if($("#newIngredient").val() != "") {
+					//split takes the value of the input and splits it into separate array elements after every comma
+					var newIngredient = $(".addIngredientWrap input").val().split(",");
+					var newCheckbox = '<input type="checkbox" checked>';
+					for(var i = 0; i < newIngredient.length; i++) {
+						if(window.CP.shouldStopExecution(0)) break;
+						$(this).parent().siblings("ul").append("<li>" + newCheckbox + newIngredient[i] + "  (+3$)</li>");
+					}
+					window.CP.exitedLoop(0);
+					$('#recipe1').children('li').click(checkboxChange(1));
+					$('#recipe2').children('li').click(checkboxChange(2));
+					$('#recipe3').children('li').click(checkboxChange(3));
+					$('#recipe3').children('li').click(checkboxChange(4));
+					$('#recipe3').children('li').click(checkboxChange(5));
+					$('#recipe3').children('li').click(checkboxChange(6));
+					$(this).parent().remove();
+				} else {
+					$("#newIngredient").attr("placeholder", "Please add ingrediant");
+				}
+			});
+			// Remove button hides the input
+			$(".addIngredientWrap > .cancelInput").on("click", function() {
+				$(this).parent().remove();
+			});
+		}); // add ingredient button
+		$(".listOver").on("click", function() {
+			//alert("");
+			var orderName = '<h3 class="orderName"><span>' + $(this).parent().parent().find(".name").text() + '</span><a class="delBtn">&#10008;</a>' + '</h3>';
+			var orderPrice = '<h3 class="orderPrice"><span>' + $(this).parent().parent().find(".price").text() + '</span>$<h3>';
+			var horisontalLine = '<hr>';
+			$(".cart").children("#listOfOrders").append("<li>" + orderName + orderPrice + horisontalLine + "</li>");
+			console.log(orderName);
+			console.log(orderPrice);
+			// opens the cart side menu
+			if($('#cartToggle').prop('checked')) {
+				//alert("");
+				$("#cartToggle").prop("checked", true);
+			} else {
+				$(".cart").css("left","0");
+				$(".body-content").css("left","100px");
+				$(".finishOrder").css("left","0px");
+				$("#cartToggle").prop("checked", true);
+			}
+			$(this).parent(".ui-dialog-content").dialog("close");
+			numOfOrders = $("#listOfOrders").children().length;
+			$(".num").text(numOfOrders);
+			// display total price in cart orders
+			var totalOrderPrice = 0;
+			$("#listOfOrders").children("li").children(".orderPrice").children("span").each(function() {
+				var price = parseFloat($(this).text());
+				totalOrderPrice += price;
+				$(".cart > h3 > span").text(totalOrderPrice + "$");
+			});
+			// remove order from cart
+			$(".delBtn").on("click", function() {
+				var removePrice = $(this).parent().parent().children(".orderPrice").children("span").text();
+				totalOrderPrice -= removePrice;
+				$(".cart > h3 > span").text(totalOrderPrice + "$");
+				$(this).parents("li").remove();
+				numOfOrders = $("#listOfOrders").children().length;
+				$(".num").text(numOfOrders);
+			});
+		}); // List over (done button)
+		var inneri=0;
+		$(".finishOrder").on("click", function() {
+			var innerpage='';
+			var html=$("ol#listOfOrders").html();
+			
+			$("#finalOrderList > ol").children().remove();
+			
+			$(".orderName").children("span").each(function() {
+				var finalOrder = '<li>' + $(this).text() + '</li>';
+				$("#finalOrderList > ol").append(finalOrder);
+				
+				inneri++;
+			});
+			//window.location.href = "http://localhost/image%20processing/user/inner-page.php";
+			// $("#finishOrderDialog").dialog({
+				// hide: "blind",
+				// show: "blind",
+				// width: "500px",
+				// closeText: "X"
+			// });
+			innerpage += '<input type="hidden" name="itemscount" value="'+inneri+'"/>';
+			innerpage +='<textarea style="display:none" name="CollectionList" value="' + html + '"></textarea>';
+			var url = 'http://localhost/image%20processing/user/inner-page.php';
+			var form = $('<form action="' + url + '" method="post">' + innerpage +
+			  '</form>');
+			$('body').append(form);
+			$(form).submit();
+		});
+		
+		
+})(jQuery);
+function togglefn(ele){
+	
+		if($(ele).hasClass("btntoggle")) {
+			$(".cart").css("left","-300px");
+			$(".body-content").css("left","0px");
+			$(".finishOrder").css("left","-265px");
+			$(ele).removeClass("btntoggle");
+		} else {			
+			$(".cart").css("left","0");
+			$(".body-content").css("left","100px");
+			$(".finishOrder").css("left","0px");
+			$(ele).addClass("btntoggle");
+		}
+}

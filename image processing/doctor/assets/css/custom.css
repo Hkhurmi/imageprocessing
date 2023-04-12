@@ -1,0 +1,418 @@
+.mobile-nav {
+    position: fixed;
+    height: 100%;
+    top: 55px;
+    right: 0px;
+    bottom: 15px;
+    width: 250px;
+	left:auto;
+    z-index: 9999;
+    overflow-y: auto;
+    background: #000;
+    transform: .5s ease;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 0px;
+    padding: 10px 0;
+}
+.mobile-nav a{
+	color:#fff;
+}
+.box h4{
+	    color: #fff !important;
+    background: #0000007a;
+    padding: 5px !important;
+    width: 130px;
+    text-align: center;
+}
+.menu1{
+	background: url(../../assets/img/menu1.jpg);
+	background-size:cover;
+	color:#fff;
+}
+.color-white{
+	color:#fff !important;
+}
+.menu2{
+	background: url(../../assets/img/gallery/gallery-1.jpg);
+	background-size:cover;
+	color:#fff;
+}
+.menu3{
+	background: url(../../assets/img/events-bg.jpg);
+	background-size:cover;
+	color:#fff;
+}
+	input {
+		outline-color: #C98474;
+	}
+
+	.navbar {
+		height: 60px;
+		width: 100%;
+		position: fixed;
+		z-index: 1;
+		background-color: #A7D2CB;
+		border-radius: 0px;
+		padding: 0px 100px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-sizing: border-box;
+	}
+
+	.btnStyle {
+		background-color: #C98474;
+		display: inline-block;
+		text-decoration: none;
+		font-size: 18px;
+		color: #fff;
+		padding: 7px 10px;
+		letter-spacing: .1em;
+		border-radius: 3px;
+		z-index: 1;
+		cursor: pointer;
+		transition: all .2s ease-in-out;
+	}
+
+	.btnStyle:hover {
+		background-color: #874C62;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, .16), 0px 6px 10px rgba(0, 0, 0, .23);
+		transform: scale(1.05, 1.05);
+	}
+
+	.btnStyle2 {
+		background-color: #ffb03b;
+	}
+
+	.btnStyle2:hover {
+		background-color: #ffb03b;
+	}
+
+	.btnStyle3 {
+		background-color: #A7D2CB;
+	}
+
+	.btnStyle3:hover {
+		background-color: #F2D388;
+		color:#000;
+		box-shadow:none;
+		transform:none;
+	}
+
+	.toggleCart {
+		position: relative;
+	}
+
+	.fa-circle {
+		font-size: 21px !important;
+		color: #C98474;
+	}
+
+	.num {
+		font-size: 12px;
+		padding: 3px 6px;
+		color: #fff;
+	}
+
+	.num,.fa-circle {
+		position: absolute;
+		right: -9px;
+		top: -9px;
+		background:#000;
+	}
+
+	.cart {
+		width: 250px;
+		position: fixed;
+		top: 60px;
+		bottom: 0px;
+		left: -300px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		z-index: 999;
+		background-color: #222;
+		padding: 30px 10px;
+		box-shadow: 2px 0 20px 5px rgba(0, 0, 0, 0.24);
+		transition: all 0.25s ease-in-out;
+	}
+
+	.cart h2 {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	#cartToggle {
+		display: none;
+	}
+
+	/*where the magic happens*/
+	#cartToggle:checked~div.body-content>.cart {
+		left: 0px;
+	}
+
+	#cartToggle:checked~div.body-content {
+		left: 100px;
+	}
+
+	#cartToggle:checked~div.body-content>.cart>a.finishOrder {
+		left: 5px;
+	}
+
+	.body-content {
+		position: relative;
+		left: 0px;
+		width: 80%;
+		margin: 0px auto;
+		display: flex;
+		justify-content: space-around;
+		transition: all .2s ease-in-out;
+	}
+
+	/* orders */
+	.recipe-menu {
+		margin-top: 100px;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+
+	.recipe {
+		background-image: url('http://mariecatribs.com/assets/styles/images/drawn-frame-big.png');
+		background-size: 100% 100%;
+		padding: 10px;
+		margin-bottom: 40px;
+		width: 300px;
+		position: relative;
+	}
+
+	.recipe img {
+		width: 100%;
+		height: 80%;
+	}
+
+	.name {
+		font-size: 23px;
+		text-align: center;
+	}
+
+	.price {
+		font-weight: bold;
+		font-size: 22px;
+		padding: 0px 15px;
+	}
+
+	.recipe:hover>.addToCart {
+		opacity: 1;
+	}
+
+	.addToCart {
+		opacity: 0;
+		position: absolute;
+		top: 70%;
+		left: 28%;
+		transition: all .2s ease-in-out;
+	}
+
+	.checkOrder {
+		padding: 50px;
+	}
+
+	.checkOrder {
+		padding: 29px 50px !important;
+	}
+
+	.listHeading {
+		text-align: center;
+		padding: 20px 0;
+	}
+
+	.listOfIngredients {
+		list-style: none;
+		margin-bottom: 15px;
+	}
+
+	.listOfIngredients input {
+		margin: 0px 5px;
+	}
+
+	.addIngredientWrap {
+		display: flex;
+		margin: 5px 0;
+	}
+
+	.addIngredientWrap input {
+		width: 60%;
+	}
+
+	.addIngredientWrap a {
+		padding: 2px 6px;
+		margin: 0 5px;
+		font-size: 15px;
+	}
+
+	.cancelInput {
+		background-color: #B33232;
+	}
+
+	.orderName {
+		padding: 13px 0px 8px 0px;
+	}
+
+	.orderPrice {
+		float: right;
+	}
+
+	hr {
+		margin: 25px 0 5px 0;
+	}
+
+	.delBtn {
+		float: right;
+		color: #F2D388;
+		cursor: pointer;
+	}
+
+	.totalDialog {
+		display: inline-block;
+		float: right;
+	}
+
+	.cart>h2>span {
+		margin-left: 15px
+	}
+
+	.finishOrder {
+		width: 233px;
+		position: fixed;
+		bottom: 0;
+		left: -265px;
+		z-index: 2;
+		padding: 6px 28px;
+		border-radius: 0;
+		text-align: center;
+		background: #000;
+		color: #ffa012;
+	}
+
+	#finishOrderDialog {
+		padding: 30px;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	#finalOrderList {
+		width: 40%;
+	}
+
+	#finalOrderList h3 {
+		text-align: center;
+	}
+
+	#finalOrderList ol {
+		margin: 10px 15px;
+	}
+
+	#buyerInfo {
+		width: 60%;
+		margin: 0 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	#buyerInfo input {
+		margin: 5px 0;
+		padding: 3px;
+		width: 90%;
+	}
+
+	#buyerInfo .order {
+		display: block;
+		width: 50%;
+		margin-top: 10px;
+		text-align: center;
+	}
+
+	#buyerInfo input::-webkit-input-placeholder {
+		text-align: center;
+	}
+
+	#thanksMessage {
+		padding: 20px;
+	}
+
+	/* Dialog Style */
+	.ui-dialog {
+		z-index: 2;
+		box-shadow: 2px 0 20px 5px rgba(0, 0, 0, 0.24);
+		background-color: #fff;
+		padding: 30px;
+	}
+
+	.ui-draggable-handle {
+		position: absolute;
+		background-color: #A7D2CB;
+		width: 100%;
+		top: 0;
+		left: 0;
+		padding: 5px;
+		box-sizing: border-box;
+		text-align: center;
+		z-index: 999;
+	}
+
+	.ui-button {
+		background-color: #874C62;
+		border: none;
+		border-radius: 3px;
+		padding: 3px 5px;
+		float: right;
+		cursor: pointer;
+		transition: all .2s ease-in-out;
+	}
+
+	.ui-button:hover {
+		background-color: #C98474;
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, .16), 0px 6px 10px rgba(0, 0, 0, .23);
+		transform: scale(1.05, 1.05);
+	}
+	.cartcontainer{
+		position: fixed;
+    bottom: 20px;
+    left: 10px;
+	z-index:9999;
+	}
+	#main, #chefs{
+		position:relative;
+	}
+.cart h3{
+	font-size:16px;
+	color:#fff;
+}
+.orderName,.orderPrice,.listOfOrders{
+	font-size:13px;
+	color:#fff;
+}
+@media (max-width:960px){
+	.cartcontainer {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    z-index: 999;
+}
+}
+.custom-footer{
+	background:transparent !important;
+}
+.custom-footer .social-links{
+	    width: 150px;
+    margin: 0 auto !important;
+    background: #ffb03b;
+    padding: 4px;
+    border-radius: 43px;
+	position: fixed;
+    bottom: 10px;
+    left: calc(50% - 75px);
+	z-index:99999;
+}
